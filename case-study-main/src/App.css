@@ -17,6 +17,10 @@
   --ps-surface: #ffffff;
 }
 
+html {
+  zoom: 1.5;
+}
+
 * {
   font-family: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 14px;
