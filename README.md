@@ -308,8 +308,7 @@ a one-off catalogue build; we throttle at 1s between requests to be polite.
 
 ### 2. Gemini model availability
 
-Initial `gemini-2.0-flash` returned 404 "not available to new users" — Google
-has been tightening model access. Switched to `gemini-2.5-flash`, which is
+Initial `gemini-2.0-flash` returned 404, switched to `gemini-2.5-flash`, which is
 current, fast, and cheap on the pay-as-you-go tier. Similarly,
 `text-embedding-004` has been retired from the `v1beta` API, so the vector
 store uses `gemini-embedding-001` (3072-dim).

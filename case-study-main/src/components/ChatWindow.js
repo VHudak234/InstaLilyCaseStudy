@@ -6,7 +6,14 @@ import { marked } from "marked";
 // Pull part records out of the tool-call trace so we can render product cards.
 // We look at the three tools that return part payloads: search_parts and
 // troubleshoot return lists; get_part_details returns a single part.
-const extractCards = (trace) => {
+//
+// When `replyText` is provided, we filter cards to only those the agent
+// actually referenced by part number — keeps cards aligned with the text the
+// user is reading (e.g. troubleshoot may surface 3 candidates but the agent's
+// reply only commits to one). Falls back to all cards if the reply doesn't
+// mention any part number, so we never end up with zero cards from a hit.
+const PART_NUMBER_IN_TEXT = /PS\d{6,}/g;
+const extractCards = (trace, replyText) => {
   if (!trace || trace.length === 0) return [];
   const byPn = new Map();
   for (const step of trace) {
@@ -22,6 +29,12 @@ const extractCards = (trace) => {
         byPn.set(p.part_number, p);
       }
     }
+  }
+
+  const mentioned = new Set((replyText || "").match(PART_NUMBER_IN_TEXT) || []);
+  if (mentioned.size > 0) {
+    const filtered = Array.from(byPn.values()).filter((p) => mentioned.has(p.part_number));
+    if (filtered.length > 0) return filtered.slice(0, 6);
   }
   // Cap at 6 so a chatty tool run doesn't flood the UI.
   return Array.from(byPn.values()).slice(0, 6);
@@ -171,7 +184,7 @@ function ChatWindow() {
   return (
       <div className="messages-container">
           {messages.map((message, index) => {
-              const cards = message.role === "assistant" ? extractCards(message.trace) : [];
+              const cards = message.role === "assistant" ? extractCards(message.trace, message.content) : [];
               return (
                 <div key={index} className={`${message.role}-message-container`}>
                     {message.content && (

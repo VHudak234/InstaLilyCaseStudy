@@ -128,6 +128,12 @@ def check_compatibility(part_number: str, model_number: str) -> dict[str, Any]:
 
         return {
             "part_number": part_number,
+            "name": part.get("name"),
+            "brand": part.get("brand"),
+            "category": part.get("category"),
+            "price": part.get("price"),
+            "image_url": part.get("image_url"),
+            "url": part.get("url"),
             "model_number": model_number,
             "likely_compatible": likely,
             "matched_brand": matched_brand,
