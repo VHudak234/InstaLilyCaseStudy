@@ -158,10 +158,12 @@ def get_installation_guide(part_number: str) -> dict[str, Any]:
         return {
             "part_number": part_number,
             "name": part.get("name"),
+            "brand": part.get("brand"),
             "difficulty": part.get("install_difficulty"),
             "estimated_time": part.get("install_time"),
             "guidance": part.get("description"),
-            "full_page_url": part.get("url"),
+            "image_url": part.get("image_url"),
+            "url": part.get("url"),
         }
     except Exception as e:
         return {"error": f"{type(e).__name__}: {e}"}

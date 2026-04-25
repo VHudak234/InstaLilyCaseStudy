@@ -16,7 +16,7 @@ const extractCards = (trace) => {
       r.likely_parts /* troubleshoot */ ||
       r.suggestions /* get_part_details miss with fuzzy suggestions */ ||
       r.items /* view_cart — cart lines */ ||
-      (r.part_number ? [r] : []); /* get_part_details hit */
+      (r.part_number && r.image_url ? [r] : []); /* get_part_details / get_installation_guide hit — require image_url so confirmation/compatibility payloads don't render as empty cards */
     for (const p of bucket) {
       if (p && p.part_number && !byPn.has(p.part_number)) {
         byPn.set(p.part_number, p);
