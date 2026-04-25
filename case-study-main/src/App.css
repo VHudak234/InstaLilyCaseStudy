@@ -1,0 +1,69 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap");
+
+/* PartSelect palette — two brand colors + neutrals that let them breathe.
+   #457577 is the teal used on-site for text-on-white and as a dark panel
+   background. #EBC261 is the logo/accent gold. Neutrals are tuned toward the
+   teal (slightly cool greys) so the palette feels cohesive, not stitched.  */
+:root {
+  --ps-teal: #457577;
+  --ps-teal-dark: #365d5f;
+  --ps-teal-soft: #e7eff0;
+  --ps-gold: #ebc261;
+  --ps-gold-soft: #faf1d8;
+  --ps-ink: #1f2937;
+  --ps-muted: #64748b;
+  --ps-line: #e4e9ec;
+  --ps-bg: #ffffff;
+  --ps-surface: #ffffff;
+}
+
+* {
+  font-family: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 14px;
+}
+
+body {
+  color: var(--ps-ink);
+  background-color: var(--ps-bg);
+}
+
+.App {
+  background-color: var(--ps-bg);
+}
+
+.heading {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: var(--ps-surface);
+  border-bottom: 1px solid var(--ps-line);
+  box-shadow: 0 1px 2px rgba(20, 30, 40, 0.04);
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+  z-index: 10;
+}
+
+.brand-logo {
+  /* Constrain by height so different logo aspect ratios still fit cleanly. */
+  height: 34px;
+  width: auto;
+  display: block;
+}
+
+.brand-divider {
+  color: var(--ps-line);
+  font-weight: 300;
+  font-size: 22px;
+  user-select: none;
+}
+
+.brand-title {
+  font-weight: 500;
+  font-size: 18px;
+  letter-spacing: 0.02em;
+  color: var(--ps-teal);
+}
