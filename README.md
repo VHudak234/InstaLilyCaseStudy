@@ -5,10 +5,6 @@ dishwasher parts only**. The agent helps customers find parts, check
 compatibility with their appliance, troubleshoot symptoms, and get install
 guidance — and politely declines anything outside that scope.
 
-> Status: feature-complete for the take-home brief. Remaining work: Loom
-> walkthrough. See [Current status](#current-status) below for the exact
-> state of each component.
-
 ## Stack
 
 - **Frontend:** React (Create React App) — provided template, wired to backend.
